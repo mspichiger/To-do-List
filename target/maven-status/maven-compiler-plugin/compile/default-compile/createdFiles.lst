@@ -1,0 +1,5 @@
+com\roche\icta\repository\TaskRepository.class
+com\roche\icta\service\TaskService.class
+com\roche\icta\controller\TaskController.class
+com\roche\icta\model\Task.class
+com\roche\icta\TodoApplication.class
