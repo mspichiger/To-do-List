@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/task")
@@ -23,9 +24,9 @@ public class TaskController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Task> readById(@PathVariable Long id) {
-        Task task = service.getTaskById(id);
-        if (task != null) {
-            return ResponseEntity.ok(task);
+        Optional<Task> task = service.getTaskById(id);
+        if (task.isPresent()) {
+            return ResponseEntity.ok(task.get());
         } else {
             return ResponseEntity.status(404).build();
         }
@@ -43,9 +44,9 @@ public class TaskController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody Task details) {
-        Task update = service.updateTask(id, details);
-        if (update != null) {
-            return ResponseEntity.ok(update);
+        Optional<Task> update = service.updateTask(id, details);
+        if (update.isPresent()) {
+            return ResponseEntity.ok(update.get());
         } else {
             return ResponseEntity.status(404).build();
         }
@@ -53,8 +54,8 @@ public class TaskController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        Task task = service.getTaskById(id);
-        if (task != null) {
+        Optional<Task> task = service.getTaskById(id);
+        if (task.isPresent()) {
             service.deleteTask(id);
             return ResponseEntity.noContent().build();
         } else {
