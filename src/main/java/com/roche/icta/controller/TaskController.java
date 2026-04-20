@@ -17,11 +17,8 @@ public class TaskController {
     @GetMapping
     public ResponseEntity<List<Task>> read() {
         List<Task> tasks = service.getAllTasks();
-        if (tasks != null) {
-            return ResponseEntity.ok(tasks);
-        } else {
-            return ResponseEntity.status(500).build();
-        }
+        return ResponseEntity.ok(tasks);
+
     }
 
     @GetMapping("/{id}")
@@ -30,7 +27,7 @@ public class TaskController {
         if (task != null) {
             return ResponseEntity.ok(task);
         } else {
-            return ResponseEntity.status(500).build();
+            return ResponseEntity.status(404).build();
         }
     }
 
@@ -50,7 +47,7 @@ public class TaskController {
         if (update != null) {
             return ResponseEntity.ok(update);
         } else {
-            return ResponseEntity.status(500).build();
+            return ResponseEntity.status(404).build();
         }
     }
 
@@ -61,7 +58,7 @@ public class TaskController {
             service.deleteTask(id);
             return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.status(500).build();
+            return ResponseEntity.status(404).build();
         }
     }
 }
