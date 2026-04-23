@@ -20,7 +20,7 @@ public class TaskController {
     @Autowired
     private TaskService service;
 
-    @Operation(operationId = "findalltasks", summary = "hallo")
+    @Operation(operationId = "findalltasks", summary = "")
     @Tag(name = "getAllTask", description = "find all tasks")
     @GetMapping
     public ResponseEntity<List<Task>> read() {
