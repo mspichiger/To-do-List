@@ -53,7 +53,7 @@ public class TaskController {
 
     @Tag(name = "updateTask", description = "Update Task")
     @PatchMapping("/{id}")
-    public ResponseEntity<Task> update(@Valid @PathVariable Long id, @RequestBody Task details) {
+    public ResponseEntity<Task> update(@PathVariable Long id, @Valid @RequestBody Task details) {
         Optional<Task> update = service.updateTask(id, details);
         if (update.isPresent()) {
             return ResponseEntity.ok(update.get());
@@ -64,7 +64,7 @@ public class TaskController {
 
     @Tag(name = "delteAllTaskById", description = "Delete Task")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@Valid @PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         Optional<Task> task = service.getTaskById(id);
         if (task.isPresent()) {
             service.deleteTask(id);
