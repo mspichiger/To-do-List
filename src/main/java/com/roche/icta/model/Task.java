@@ -12,7 +12,6 @@ import lombok.Data;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(message = "ID darf nicht null sein")
     private Long id;
     @NotBlank(message = "Titel ist erforderlich")
     @Size(min = 3, max = 50)
